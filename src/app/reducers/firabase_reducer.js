@@ -6,7 +6,7 @@ import {
   UPDATE_FIREBASE_USER,
   CHANGE_FIREBASE_USER_PASSWORD,
   FIREBASE_PASSWORD_RESET_EMAIL,
-  LOGOUT_FIRABSE_USER
+  LOGOUT_FIREBASE_USER
 } from '../actions/types';
 
 
@@ -14,7 +14,7 @@ export default function(state = null, action) {
     switch (action.type) {
         case FETCH_FIREBASE_USER:
             return action.payload
-        case LOGOUT_FIRABSE_USER:
+        case LOGOUT_FIREBASE_USER:
             return action.payload
         case REGISTER_FIRABASE_USER:
               return action.payload
