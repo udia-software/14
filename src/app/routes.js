@@ -9,6 +9,10 @@ import UserRegister from './components/user/register';
 import UserProfile from './components/user/profile';
 import ResetPassword from './components/user/reset_password';
 
+import CreateNode from './components/node/create_node';
+import EditNode from './components/node/edit_node';
+import Node from './components/node/node';
+
 
 export default (
   <Route path="/" component={App}>
@@ -18,6 +22,10 @@ export default (
     <Route path="/register" component={UserRegister}/>
     <Route path="/reset" component={ResetPassword}/>
     <Route path="/profile" component={UserProfile}/>
+
+    <Route path="/node/create" component={CreateNode}/>
+    <Route path="/node/:uid" component={Node}/>
+    <Route path="/node/edit/:uid" component={EditNode}/>
   </Route>
 
 );

@@ -3,10 +3,10 @@ module.exports = {
   // Change this to your firebase configuration! (Add Firebase to your web app)
   FIREBASE_CONFIG: {
 
-    apiKey: "AIzaSyDFsZ_h1I30_2nY3ZjhElJaz6wBGFk0JW0",
-    authDomain: "react-redux-firebase-bp.firebaseapp.com",
-    databaseURL: "https://react-redux-firebase-bp.firebaseio.com",
-    storageBucket: "react-redux-firebase-bp.appspot.com"
+    apiKey: "AIzaSyAg6B6a1hcOPwnFpamLAcw16rcD_t8M0WM",
+    authDomain: "udia-1820e.firebaseapp.com",
+    databaseURL: "https://udia-1820e.firebaseio.com",
+    storageBucket: "udia-1820e.appspot.com"
 
   }
 };

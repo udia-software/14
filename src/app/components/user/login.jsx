@@ -68,12 +68,12 @@ class UserLogin extends Component {
           <button type="submit" className="btn btn-default btn-block">Login</button>
           <br/>
           <h5><Link to="/reset">Forgot password?</Link></h5>
+          {/*
 
           <h4>Login with</h4>
           <a href="#" className="btn btn-primary bt-social" onClick={()=> {
             this.loginWithProvider("facebook")
           }} data-provider="facebook">Facebook</a>
-          {/*
            <a href="#" className="btn btn-info bt-social" data-provider="twitter">Twitter</a>
 
            <a href="#" className="btn btn-danger bt-social" data-provider="google">Google+</a>

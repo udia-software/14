@@ -7,7 +7,11 @@ import {
   UPDATE_FIREBASE_USER,
   CHANGE_FIREBASE_USER_PASSWORD,
   FIREBASE_PASSWORD_RESET_EMAIL,
-  LOGOUT_FIREBASE_USER
+  LOGOUT_FIREBASE_USER,
+
+  GET_FIREBASE_NODE,
+  CREATE_FIREBASE_NODE,
+  SET_FIREBASE_NODE
 } from './types';
 
 
@@ -71,6 +75,30 @@ export function logoutUser(user) {
   const request = FireBaseTools.logoutUser(user);
   return {
     type: LOGOUT_FIREBASE_USER,
+    payload: request
+  }
+}
+
+export function getFirebaseNode(uid) {
+  const request = FireBaseTools.getFirebaseNodeOnce(uid);
+  return {
+    type: GET_FIREBASE_NODE,
+    payload: request
+  }
+}
+
+export function createFirebaseNode(node) {
+  const request = FireBaseTools.createFirebaseNode(node);
+  return {
+    type: CREATE_FIREBASE_NODE,
+    payload: request
+  }
+}
+
+export function setFirebaseNode(uid, node) {
+  const request = FireBaseTools.setFirebaseNode(uid, node);
+  return {
+    type: SET_FIREBASE_NODE,
     payload: request
   }
 }

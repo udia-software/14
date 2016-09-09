@@ -182,14 +182,80 @@ var FireBaseTools = {
   },
 
   /**
-   * Get the firebase database reference.
+   * Get one Firebase node.
    *
-   * @param path {!string|string}
-   * @returns {!firebase.database.Reference|firebase.database.Reference}
+   * @param key {string}
+   * @returns {firebase.Promise<any>|!firebase.Promise.<*>}
    */
-  getDatabaseReference: (path) => {
-    return firebaseDb.ref(path);
+  getFirebaseNodeOnce: (key) => {
+    return firebaseDb.ref('nodes').child(key).once('value',
+      snapshot => {
+        return snapshot.exportVal();
+      }, error => {
+        return {
+          errorCode: error.code,
+          errorMessage: error.message
+        }
+      })
+  },
+
+  /**
+   * Create one Firebase node.
+   *
+   * @param node
+   * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
+   */
+  createFirebaseNode: (node) => {
+    // Get a new key for the node
+    let newNodeKey = firebaseDb.ref().child('nodes').push().key;
+
+    // Write the new node's data simultaneously in the nodes list and the user's node list.
+    let updates = {};
+    updates['/nodes/' + newNodeKey] = node;
+    updates['/user-nodes/' + node.author + '/' + newNodeKey] = node;
+    return firebaseDb.ref().update(updates).then(() => {
+      return node.uid = newNodeKey;
+    });
+  },
+
+  /**
+   * Set one firebase node. Used for updating nodes.
+   *
+   * @param key {string} UID of the node to update
+   * @param node {*} New node object. author, markdown, linked_nodes
+   * @returns {!firebase.Promise.<void>|firebase.Promise<any>}
+   */
+  setFirebaseNode: (key, node) => {
+    return firebaseDb.ref().child('nodes').child(key).set(node).then(() => {
+      return node;
+    });
+  },
+
+  /**
+   * Listen to a firebase node
+   *
+   * @param key {string} The uid of the node
+   * @param callback {function} Callback is passed a DataSnapshot.
+   * @param cancelCallback {function} Optional callback for if the event is cancelled or lost
+   * @param context {*} If provided, this object will be used as this when calling the callbacks.
+   * @returns {function}
+   */
+  listenToFirebaseNode: (key, callback, cancelCallback, context) => {
+    return firebaseDb.ref('nodes').child(key).on('value', callback, cancelCallback, context);
+  },
+
+  /**
+   * Stop listening to a firebase node
+   *
+   * @param key {string} The uid of the node
+   * @param callback {function} Optional, the callback function that was passed to listenToFirebaseNode
+   * @param context {*} Optional, the context that was passed to listenToFirebaseNode
+   * @returns {any}
+   */
+  stopListeningToFirebaseNode: (key, callback, context) => {
+    return firebaseDb.ref('nodes').child(key).off('value', callback, context);
   }
+
 };
 
 export default FireBaseTools;

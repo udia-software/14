@@ -30,6 +30,7 @@ class App extends Component {
             {currentUser.email} <span className="caret"></span></a>
           <ul className="dropdown-menu">
             <li><Link to="/profile">Profile</Link></li>
+            <li><Link to="/node/create">Create Node</Link></li>
             <li role="separator" className="divider"></li>
             <li><Link to="/logout" onClick={this.logOut}>Logout</Link></li>
           </ul>
@@ -55,14 +56,10 @@ class App extends Component {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <Link to="/" className="navbar-brand">Firebase & Redux boilerplate</Link>
+              <Link to="/" className="navbar-brand">Ud14</Link>
 
             </div>
             <nav className="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-              <ul className="nav navbar-nav">
-                <li><Link to="/"> Home</Link></li>
-                ,
-              </ul>
               <ul className="nav navbar-nav navbar-right">
                 {this.renderUserMenu(this.props.currentUser)}
               </ul>
